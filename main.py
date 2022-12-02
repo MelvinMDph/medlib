@@ -1,4 +1,6 @@
-#Opens calculator
+#MAIN APPLICATION 
+#Calls functions
+
 if __name__=="__main__":
     print("Welcome to the App!")
 
@@ -8,10 +10,12 @@ def main():
     list()
     tag=input("Formula tag: ")
 
-    if tag == "bmi":
+    if tag.lower() == "bmi":
         bmi_calculator()
-    elif tag == "gfr":
+    elif tag.lower() == "gfr":
         gfr_calculator()
+    elif tag.lower() == "k":
+        k_correction()
     
     new_input=input("Continue? [Y/N]: ").lower()
     if new_input=="y":
