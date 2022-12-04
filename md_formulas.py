@@ -2,7 +2,7 @@
 #Defines functions
 
 def list():
-    list=["bmi", "gfr", "k"]
+    list=["bmi", "gfr", "k", "map"]
     print("Tags:", list)
 
 
@@ -104,4 +104,9 @@ def k_correction():
 
     print("K 2.5 - 3.5 mEq/L: 10 mEq/h max infusion rate; 40 mEq/L max concentration; not to exceed 200 mEq dose/24h." "\n")
 
-k_correction()
+def map_calculator():
+    sbp=float(input("Systolic BP: "))
+    dbp=float(input("Diastolic BP: "))
+    numerator=(2*dbp)+sbp
+    map=numerator/3
+    print("MAP =", round(map))
