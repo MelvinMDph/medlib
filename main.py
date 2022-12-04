@@ -16,6 +16,8 @@ def main():
         gfr_calculator()
     elif tag.lower() == "k":
         k_correction()
+    elif tag.lower() == "map":
+        map_calculator()
     
     new_input=input("Continue? [Y/N]: ").lower()
     if new_input=="y":
