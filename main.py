@@ -8,17 +8,17 @@ from md_formulas import *
 
 def main():
     list()
-    tag=input("Formula tag: ")
+    tag=input("Formula tag: ").lower()
 
-    if tag.lower() == "bmi":
+    if tag == "bmi":
         bmi_calculator()
-    elif tag.lower() == "gfr":
+    elif tag == "gfr":
         gfr_calculator()
-    elif tag.lower() == "k":
+    elif tag == "k":
         k_correction()
-    elif tag.lower() == "map".lower():
+    elif tag == "map".lower():
         map_calculator()
-    elif tag.lower() == "qtc":
+    elif tag == "qtc":
         corrected_qt()
     
     new_input=input("Continue? [Y/N]: ").lower()
