@@ -14,12 +14,20 @@ def main():
         qrs_axis()
     elif tag == "bmi":
         bmi_calculator()
+    elif tag == "dobu":
+        dobutamine()
+    elif tag == "dopa":
+        dopamine()
+    elif tag == "ne":
+        norepinephrine()
     elif tag == "gfr":
         gfr_calculator()
     elif tag == "k":
         k_correction()
-    elif tag == "map".lower():
+    elif tag == "map":
         map_calculator()
+    elif tag == "ne":
+        norepinephrine()
     elif tag == "qtc":
         corrected_qt()
     

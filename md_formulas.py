@@ -2,7 +2,7 @@
 #Defines functions
 
 def list():
-    list=["AXIS", "BMI", "GFR", "K", "MAP", "QTc"]
+    list=["AXIS", "BMI", "DOPA", "DOBU", "NE", "GFR", "K", "MAP", "QTc"]
     print("Keys:", list)
 
 
@@ -152,3 +152,46 @@ def qrs_axis():
         print("Left Axis Deviation (LAD).")
     elif axis >-180 <-90:
         print ("Extreme Axis Deviation.")
+
+def norepinephrine():
+    print("calculates Norepinephrine drip...")
+    mL=float(input("D5W vol (mL): "))
+    mg=float(input("Norepinephrine (mg): "))
+    concentration=(mg/mL)*1000
+    
+    check_wt=(input("Use patient weight? [Y/N]")).lower()
+    if check_wt == "y":
+        wt=float(input("Patient wt. (kg): "))
+    else:
+        wt=1
+    
+    desired_dose=float(input("Desired dose (mcg/kg/m) or (mcg/m): "))
+    if desired_dose >=15:
+        print("Are you sure? If systemic perfusion of SBP cannot be maintained at >90 mmHg with a dose of 15 mcg/min, it is unlikely that further increases in dose will be of benefit.")
+    
+    drip_rate=desired_dose*wt*60/concentration
+    print("Drip rate =", drip_rate, "ml/hr (or cc/hr or ugtt/m)")
+    print("Start norepinephrine drip:", mg, "mg NE +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m or mcg/m dose)")
+
+def dopamine():
+    print("calculates Dopamine drip...")
+    mL=float(input("D5W vol (mL): "))
+    mg=float(input("Dopamine (mg): "))
+    concentration=(mg/mL)*1000
+    wt=float(input("Patient wt. (kg): "))
+    desired_dose=float(input("Desired dose (mcg/kg/m): "))
+    drip_rate=desired_dose*wt*60/concentration
+    print("Drip rate =", drip_rate, "ml/hr (or cc/hr or ugtt/m)")
+    print("Start dopamine drip:", mg, "mg dopamine +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m)")
+
+def dobutamine():
+    print("calculates Dobutamine drip...")
+    mL=float(input("D5W vol (mL): "))
+    mg=float(input("Dobutamine (mg): "))
+    concentration=(mg/mL)*1000
+    wt=float(input("Patient wt. (kg): "))
+    desired_dose=float(input("Desired dose (mcg/kg/m): "))
+    drip_rate=desired_dose*wt*60/concentration
+    print("Drip rate =", drip_rate, "ml/hr (or cc/hr or ugtt/m)")
+    print("Start dobutamine drip:", mg, "mg dobutamine +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m)")
+
