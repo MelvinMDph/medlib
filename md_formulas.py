@@ -2,7 +2,7 @@
 #Defines functions
 
 def list():
-    list=["bmi", "gfr", "k", "map"]
+    list=["BMI", "GFR", "K", "MAP", "QTc"]
     print("Tags:", list)
 
 
@@ -110,3 +110,27 @@ def map_calculator():
     numerator=(2*dbp)+sbp
     map=numerator/3
     print("MAP =", round(map))
+
+def corrected_qt():
+    print("Corrected QT interval Calculator")
+    QT_interval=float(input("QT interval (sm. boxes): "))
+    QT_sec=QT_interval*0.04
+    heart_rate=float(input("Heart rate (bpm): "))
+    RR_interval=1500/heart_rate
+    RR_sec=RR_interval*0.04
+    sqroot_RR=RR_sec**0.5
+    if heart_rate >100:
+        print("Framingham formula. . .")
+        oneminusRR=1-(round(RR_sec, 2))
+        corrected_qt=QT_sec+(0.154*oneminusRR)
+    else:
+        print("Bazett's Formula. . .")
+        corrected_qt=QT_sec/sqroot_RR
+
+    print("Corrected QT =", round(corrected_qt, 2), "sec or ", 1000*(round(corrected_qt, 2)), "msec")
+    if corrected_qt >0.45:
+        print("QTc is prolonged.")
+    elif corrected_qt <0.45:
+        print("QTC is normal.")
+
+    print("\n \n Normal: </= 440 to 450 msec.\n Upper limit: 460 msec in women or 450 msec in men.")
