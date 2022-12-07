@@ -2,19 +2,19 @@
 #Defines functions
 
 def list():
-    list=["BMI", "GFR", "K", "MAP", "QTc"]
-    print("Tags:", list)
+    list=["AXIS", "BMI", "GFR", "K", "MAP", "QTc"]
+    print("Keys:", list)
 
 
 def new_file():
     name=input("Name: ")
     age=input("Age: ")
-    gender=input("Gender [M/F]: ")
+    gender=input("Gender [M/F]: ").lower()
     room=input("Room No.: ")
 
 
 def bmi_calculator():
-    print("Body Mass Index Calculator")
+    print("calculates Body Mass Index (BMI)...")
     weight=float(input("Wt (kg): "))
     height=float(input("Ht (cm): "))
     ht_meter=height/100
@@ -35,11 +35,11 @@ def bmi_calculator():
 
 def gfr_calculator():
     print("CKD-EPI Creatinine Equation 2021")
-    gender=input("Gender [M/F]: ")
+    gender=input("Gender [M/F]: ").lower()
     age=float(input("Age: "))
     creatinine=float(input("Creatinine (mg/dL): "))
     K=float(0.7)
-    if gender.lower() == "m":
+    if gender == "m":
         K=float(0.9)
     
     ScrK=float(creatinine/K)
@@ -51,7 +51,7 @@ def gfr_calculator():
         max=ScrK
     
     alpha=float(-0.241)
-    if gender.lower() == "m":
+    if gender == "m":
         alpha=float(-0.302)
     
     constant=float(0.9938)
@@ -60,7 +60,7 @@ def gfr_calculator():
     maxtonegexponent=max**negativeexponent
     constanttoage=constant**age
     femalevariable=float(1.012)
-    if gender.lower() == "m":
+    if gender == "m":
         femalevariable=1
     
     GFR=142*mintoalpha*maxtonegexponent*constanttoage*femalevariable
@@ -79,7 +79,7 @@ def gfr_calculator():
         print("Stage 4, severely decreased")
 
 def k_correction():
-    print("POTASSIUM DEFICIT CALCULATOR")
+    print("calculates K+ deficit...")
     k_current=float(input("Serum K: "))
     k_desired=float(input("Desired K: "))
     k_difference=k_desired-k_current
@@ -105,6 +105,7 @@ def k_correction():
     print("K 2.5 - 3.5 mEq/L: 10 mEq/h max infusion rate; 40 mEq/L max concentration; not to exceed 200 mEq dose/24h." "\n")
 
 def map_calculator():
+    print("calculates Mean Arterial Pressure (MAP)...")
     sbp=float(input("Systolic BP: "))
     dbp=float(input("Diastolic BP: "))
     numerator=(2*dbp)+sbp
@@ -112,7 +113,7 @@ def map_calculator():
     print("MAP =", round(map))
 
 def corrected_qt():
-    print("Corrected QT interval Calculator")
+    print("calculates corrected QT interval (QTc)...")
     QT_interval=float(input("QT interval (sm. boxes): "))
     QT_sec=QT_interval*0.04
     heart_rate=float(input("Heart rate (bpm): "))
@@ -134,3 +135,20 @@ def corrected_qt():
         print("QTC is normal.")
 
     print("\n \n Normal: </= 440 to 450 msec.\n Upper limit: 460 msec in women or 450 msec in men.")
+
+def qrs_axis():
+    print("calculates QRS axis...")
+    lead_I=float(input("lead I: " ))
+    aVF=float(input("aVF: "))
+    numerator=90*aVF
+    denominator=abs(lead_I)+abs(aVF)
+    axis=round(numerator/denominator)
+    print("QRS axis =", axis)
+    if axis >90 <180:
+        print("Right Axis Deviation (RAD).")
+    elif axis >=-30 <=90:
+        print("Normal axis.")    
+    elif axis >=-90 <-30: 
+        print("Left Axis Deviation (LAD).")
+    elif axis >-180 <-90:
+        print ("Extreme Axis Deviation.")

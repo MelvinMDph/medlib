@@ -8,9 +8,11 @@ from md_formulas import *
 
 def main():
     list()
-    tag=input("Formula tag: ").lower()
+    tag=input("Enter keyword: ").lower()
 
-    if tag == "bmi":
+    if tag == "axis":
+        qrs_axis()
+    elif tag == "bmi":
         bmi_calculator()
     elif tag == "gfr":
         gfr_calculator()
