@@ -7,7 +7,7 @@ axis    : QRS axis
 bmi     : Asian-BMI  
 dobu    : Dobutamine drip  
 dopa    : Dopamine drip  
-fio2    : Desired FiO2
+fio2    : Desired FiO2  
 gfr     : eGFR (CKD-EPI Equation 2021)  
 qtc     : corrected QT interval (QTc) (Barett's and Framingham formulas)  
 k       : K+ deficit in hypokalemia  
