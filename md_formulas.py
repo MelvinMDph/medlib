@@ -2,16 +2,14 @@
 #Defines functions
 
 def list():
-    list=["AXIS", "BMI", "DOPA", "DOBU", "NE", "GFR", "K", "MAP", "QTc"]
+    list=["AXIS", "BMI", "DOPA", "DOBU", "FiO2", "NA", "NE", "GFR", "K", "MAP", "QTc", "WATER"]
     print("Keys:", list)
-
 
 def new_file():
     name=input("Name: ")
     age=input("Age: ")
-    gender=input("Gender [M/F]: ").lower()
+    gender=input("Gender: [M/F] ").lower()
     room=input("Room No.: ")
-
 
 def bmi_calculator():
     print("calculates Body Mass Index (BMI)...")
@@ -32,10 +30,9 @@ def bmi_calculator():
     elif bmi >=18 <23: 
         print("Normal")
 
-
 def gfr_calculator():
     print("CKD-EPI Creatinine Equation 2021")
-    gender=input("Gender [M/F]: ").lower()
+    gender=input("Gender: [M/F] ").lower()
     age=float(input("Age: "))
     creatinine=float(input("Creatinine (mg/dL): "))
     K=float(0.7)
@@ -90,7 +87,7 @@ def k_correction():
     print("Suggestion:" "\n" "May need", round(kcl_tablets), "KCl tab. (10 mEqs/tab),")
     kcl_iv=deficit/40
     if k_current >2.5 <3.5:
-        added_k_serum=float(round(round(kcl_iv)*0.4), 2)
+        added_k_serum=float(round(kcl_iv*0.4, 2))
         print("or", round(kcl_iv), "cycles of 40 mEq/L KCl correction." "\n")
         print(round(kcl_iv), "cycles of 40 mEqs KCl/L will add", added_k_serum, "mEqs K to serum (10 mEqs KCl IV increases serum K by ~0.1 mEq/L.")
     elif k_current <=2.5:
@@ -159,7 +156,7 @@ def norepinephrine():
     mg=float(input("Norepinephrine (mg): "))
     concentration=(mg/mL)*1000
     
-    check_wt=(input("Use patient weight? [Y/N]")).lower()
+    check_wt=(input("Use patient weight? [y/n] ")).lower()
     if check_wt == "y":
         wt=float(input("Patient wt. (kg): "))
     else:
@@ -167,7 +164,7 @@ def norepinephrine():
     
     desired_dose=float(input("Desired dose (mcg/kg/m) or (mcg/m): "))
     if desired_dose >=15:
-        print("Are you sure? If systemic perfusion of SBP cannot be maintained at >90 mmHg with a dose of 15 mcg/min, it is unlikely that further increases in dose will be of benefit.")
+        print("Are you sure? If systemic perfusion or SBP cannot be maintained at >90 mmHg with a dose of 15 mcg/min, it is unlikely that further increases in dose will be of benefit.")
     
     drip_rate=desired_dose*wt*60/concentration
     print("Drip rate =", drip_rate, "ml/hr (or cc/hr or ugtt/m)")
@@ -194,4 +191,91 @@ def dobutamine():
     drip_rate=desired_dose*wt*60/concentration
     print("Drip rate =", drip_rate, "ml/hr (or cc/hr or ugtt/m)")
     print("Start dobutamine drip:", mg, "mg dobutamine +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m)")
+
+def na_correction():
+    print("calculates Na+ deficit...")
+    na_current=float(input("Serum Na: "))
+    na_desired=float(input("Desired Na: "))
+    wt=float(input("Wt. (kg): "))
+    deficit=(na_desired-na_current)*wt*0.6
+    print("Na deficit =", round(deficit), "mEqs")
+    infusion_time=(na_desired-na_current)/0.5
+    print("Time needed to infuse =", round(infusion_time), "h")
+    pnss_needed=deficit/154
+    print("PNSS needed =", round(pnss_needed, 1), "L")
+    drip_rate=(pnss_needed*1000)/infusion_time
+    print("Drip rate =", round(drip_rate), "cc/h")
+    print("\n IVF: PNSS 1L x", round(drip_rate), "cc/h for a total of", round(pnss_needed, 1), "L, re-check serum Na (e.g. q6h).")
+    see=input("See note? [y/n] ").lower()
+    if see == "y":
+        print("Note: frequent Na+ monitoring needed (correction is unpredictable). Na+ should not be corrected >10nM within the first 24h in chronic hyponatremia due to increased risk of osmotic demyelination syndrome (central pontine myelinolysis).")
+
+def water_deficit():
+    print("calculates water deficit in hypernatremia...")
+    gender=input("Gender: [M/F] ").lower()
+    na=float(input("Serum Na: "))
+    wt=float(input("Wt. (kg): "))
+    insensible=float(input("Insensible water loss (ml/kg/d): "))
+    tbw=0.5
+    if gender == "m":
+        tbw = 0.6
+    
+    difference=na-140
+    deficit=(difference/140)*wt*tbw
+    print("Water deficit =", round(deficit, 1), "L")
+    insensible_loss=(insensible*wt)/1000
+    print("Insensible losses =", round(insensible_loss, 1), "L")
+    ml=deficit*1000
+    po_rate=ml/12
+    iv_rate=ml/48
+    print("Option 1: Give", round(po_rate), "ml free-water flushes q4h in between feedings.")
+    print("Option 2: IVF D5W (or 0.3 NaCl) 1 L x", round(iv_rate), "cc/h")
+    print("Re-check serum Na (e.g. q6h).")
+    see=input("See note? [y/n] ").lower()
+    if see == "y":
+        print("Note: free water should be administered PO/NGT unless contraindicated (D5W alternative or 0.3 NaCl). Correct water deficit over 48-72 h with daily incorporation of insensible losses and ongoing water losses.")
+        print("Normal intake: 2500 ml/d (35 mg/kg/d in afebrile 70 kg) Liquids: 1500 ml. Foods: 700 ml. Metabolic (endogenous): 300 ml.")
+        print("Normal output: 1400-2300 ml/d. Insensible loss: 600-900 ml (lungs (decreased during MV due to free water gain during humidified ventilation) and skin) + 2.5 ml/kg/d each degree > normal. Urine: 800-1500 ml. Stool: 250 ml.")
+
+def fio2():
+    print("calculates Desired FiO2...")
+    age=float(input("Age: "))
+    current_FiO2=float(input("Current FiO2: "))
+    current_PaO2=float(input("Current PaO2: "))
+
+    if age <60:
+        desired_PaO2=104-(0.43*age)
+    elif age >=60:
+        desired_PaO2=80-(age-60)
+    
+    desired_FiO2=(current_FiO2*desired_PaO2)/current_PaO2
+    print("Desired FiO2 =", round(desired_FiO2))
+    if desired_FiO2 >=60:
+        print("Suggest: Face mask 7-8 LPM (FiO2 = 60%) or higher O2 flow system.")
+    elif desired_FiO2 >=50 <60:
+        print("Suggest: Face mask 6-7 LMP (FiO2 = 50%).")
+    elif desired_FiO2 >=40 <50:
+        print("Suggest: Nasal cannula 5 or 6 LPM (FiO2 = 40 and 44%) or Face mask 5-6 LPM (FiO2 = 40%).")
+    elif desired_FiO2 >=36 <40:
+        print("Suggest: Nasal cannula 4 LPM (FiO2 = 36%).")
+    elif desired_FiO2 >=32 <36:
+        print("Suggest: Nasal cannula 3 LPM (FiO2 = 32%).")
+    elif desired_FiO2 >=28 <32:
+        print("Suggest: Nasal cannula 2 LPM (FiO2 = 28%).")
+    elif desired_FiO2 >=24 <28:
+        print("Suggest: Nasal cannula 1 LPM (FiO2 = 24%).")
+    else:
+        print("FiO2 at room air is 21%.")
+
+    see=input("See note? [y/n] ")
+    print("O2 flow system, O2 flow rate, Estimated FiO2:")
+    print("Nasal cannula    1       24 %")
+    print("Nasal cannula    2       28 %")
+    print("Nasal cannula    3       32 %")
+    print("Nasal cannula    4       36 %")
+    print("Nasal cannula    5       40 %")
+    print("Nasal cannula    6       44 %")
+    print("Simple face mask 5-6     40 %")
+    print("Simple face mask 6-7     50 %")
+    print("Simple face mask 7-8     60 %")
 

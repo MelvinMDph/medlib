@@ -18,18 +18,23 @@ def main():
         dobutamine()
     elif tag == "dopa":
         dopamine()
-    elif tag == "ne":
-        norepinephrine()
+    elif tag == "fio2":
+        fio2()
     elif tag == "gfr":
         gfr_calculator()
     elif tag == "k":
         k_correction()
     elif tag == "map":
         map_calculator()
+    elif tag == "na":
+        na_correction()
     elif tag == "ne":
         norepinephrine()
     elif tag == "qtc":
         corrected_qt()
+    elif tag == "water":
+        water_deficit()
+    
     
     new_input=input("Continue? [Y/N]: ").lower()
     if new_input=="y":
