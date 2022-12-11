@@ -2,7 +2,7 @@
 #Defines functions
 
 def list():
-    tags=["AXIS", "BMI", "DOPA", "DOBU", "FiO2", "NA", "NE", "GFR", "K", "MAP", "QTc", "WATER"]
+    tags=["AXIS", "BMI", "DOPA", "DOBU", "FiO2", "GFR", "K", "LIST", "MAP", "NA", "NE", "NOTE", "QTc", "WATER"]
     print("Tags:", tags)
 
 def note():
@@ -113,19 +113,19 @@ def map_calculator():
     print("MAP =", round(map))
 
 def corrected_qt():
-    print("Compute: corrected QT interval (QTc)")
-    QT_interval=float(input("QT interval (sm. boxes): "))
+    print("Compute: corrected QT (QTc)")
+    QT_interval=float(input("QT interval (s. boxes): "))
     QT_sec=QT_interval*0.04
     heart_rate=float(input("Heart rate (bpm): "))
     RR_interval=1500/heart_rate
     RR_sec=RR_interval*0.04
     sqroot_RR=RR_sec**0.5
     if heart_rate >100:
-        print("Framingham formula. . .")
+        print("[Framingham formula]")
         oneminusRR=1-(round(RR_sec, 2))
         corrected_qt=QT_sec+(0.154*oneminusRR)
     else:
-        print("Bazett's Formula. . .")
+        print("[Bazett's Formula]")
         corrected_qt=QT_sec/sqroot_RR
 
     print("Corrected QT =", round(corrected_qt, 2), "sec or ", 1000*(round(corrected_qt, 2)), "msec")

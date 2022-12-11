@@ -1,19 +1,21 @@
 # medlibrary
 Formulas in medicine.  
   
-tag     :   function  
+tag     :   "function"  
   
+list    :   list tags  
+note    :   enter note    
 axis    :   QRS axis  
-bmi     :   Asian-BMI  
+bmi     :   BMI (Asian population)  
 dobu    :   Dobutamine drip  
 dopa    :   Dopamine drip  
-fio2    :   Desired FiO2  
+fio2    :   desired FiO2  
 gfr     :   eGFR (CKD-EPI Equation 2021)  
-qtc     :   corrected QT interval (QTc) (Barett's and Framingham formulas)  
+qtc     :   corrected QT (QTc) [Barett's and Framingham formulas]  
 k       :   K+ deficit in hypokalemia  
 map     :   Mean Arterial Pressure (MAP)  
 na      :   Na+ deficit in hyponatremia  
 ne      :   Norepinephrine drip  
-water   :   Water deficit in hypernatremia  
+water   :   water deficit in hypernatremia  
   
 in progress...

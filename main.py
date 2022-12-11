@@ -9,7 +9,9 @@ from md_formulas import *
 def main():
     tag=input("Tag: ").lower()
 
-    if tag == "axis":
+    if tag == "list":
+        list()
+    elif tag == "axis":
         qrs_axis()
     elif tag == "bmi":
         bmi_calculator()
