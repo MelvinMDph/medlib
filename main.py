@@ -2,13 +2,12 @@
 #Calls functions
 
 if __name__=="__main__":
-    print("Welcome to the App!")
+    print("Welcome to the app!")
 
 from md_formulas import *
 
 def main():
-    list()
-    tag=input("Enter keyword: ").lower()
+    tag=input("Tag: ").lower()
 
     if tag == "axis":
         qrs_axis()
@@ -30,11 +29,12 @@ def main():
         na_correction()
     elif tag == "ne":
         norepinephrine()
+    elif tag == "note":
+        note()
     elif tag == "qtc":
         corrected_qt()
     elif tag == "water":
         water_deficit()
-    
     
     new_input=input("Continue? [Y/N]: ").lower()
     if new_input=="y":

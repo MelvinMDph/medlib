@@ -2,17 +2,20 @@
 #Defines functions
 
 def list():
-    list=["AXIS", "BMI", "DOPA", "DOBU", "FiO2", "NA", "NE", "GFR", "K", "MAP", "QTc", "WATER"]
-    print("Keys:", list)
+    tags=["AXIS", "BMI", "DOPA", "DOBU", "FiO2", "NA", "NE", "GFR", "K", "MAP", "QTc", "WATER"]
+    print("Tags:", tags)
 
-def new_file():
+def note():
     name=input("Name: ")
     age=input("Age: ")
-    gender=input("Gender: [M/F] ").lower()
-    room=input("Room No.: ")
+    gender=input("Gender: ").lower()
+    room=input("Room - Hospital: ")
+    diagnosis=input("-  ")
+    plan=input(">  ")
+    other=input("/  ")
 
 def bmi_calculator():
-    print("calculates Body Mass Index (BMI)...")
+    print("Compute: Asian-Body Mass Index (BMI)")
     weight=float(input("Wt (kg): "))
     height=float(input("Ht (cm): "))
     ht_meter=height/100
@@ -31,7 +34,7 @@ def bmi_calculator():
         print("Normal")
 
 def gfr_calculator():
-    print("CKD-EPI Creatinine Equation 2021")
+    print("Compute: eGFR (CKD-EPI Creatinine Equation 2021)")
     gender=input("Gender: [M/F] ").lower()
     age=float(input("Age: "))
     creatinine=float(input("Creatinine (mg/dL): "))
@@ -76,7 +79,7 @@ def gfr_calculator():
         print("Stage 4, severely decreased")
 
 def k_correction():
-    print("calculates K+ deficit...")
+    print("Compute: K+ deficit")
     k_current=float(input("Serum K: "))
     k_desired=float(input("Desired K: "))
     k_difference=k_desired-k_current
@@ -102,7 +105,7 @@ def k_correction():
     print("K 2.5 - 3.5 mEq/L: 10 mEq/h max infusion rate; 40 mEq/L max concentration; not to exceed 200 mEq dose/24h." "\n")
 
 def map_calculator():
-    print("calculates Mean Arterial Pressure (MAP)...")
+    print("Compute: Mean Arterial Pressure (MAP)")
     sbp=float(input("Systolic BP: "))
     dbp=float(input("Diastolic BP: "))
     numerator=(2*dbp)+sbp
@@ -110,7 +113,7 @@ def map_calculator():
     print("MAP =", round(map))
 
 def corrected_qt():
-    print("calculates corrected QT interval (QTc)...")
+    print("Compute: corrected QT interval (QTc)")
     QT_interval=float(input("QT interval (sm. boxes): "))
     QT_sec=QT_interval*0.04
     heart_rate=float(input("Heart rate (bpm): "))
@@ -134,7 +137,7 @@ def corrected_qt():
     print("\n \n Normal: </= 440 to 450 msec.\n Upper limit: 460 msec in women or 450 msec in men.")
 
 def qrs_axis():
-    print("calculates QRS axis...")
+    print("Compute: QRS axis")
     lead_I=float(input("lead I: " ))
     aVF=float(input("aVF: "))
     numerator=90*aVF
@@ -151,12 +154,12 @@ def qrs_axis():
         print ("Extreme Axis Deviation.")
 
 def norepinephrine():
-    print("calculates Norepinephrine drip...")
+    print("Compute: Norepinephrine drip")
     mL=float(input("D5W vol (mL): "))
     mg=float(input("Norepinephrine (mg): "))
     concentration=(mg/mL)*1000
     
-    check_wt=(input("Use patient weight? [y/n] ")).lower()
+    check_wt=(input("Use patient weight? [y/n]: ")).lower()
     if check_wt == "y":
         wt=float(input("Patient wt. (kg): "))
     else:
@@ -171,7 +174,7 @@ def norepinephrine():
     print("Start norepinephrine drip:", mg, "mg NE +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m or mcg/m dose)")
 
 def dopamine():
-    print("calculates Dopamine drip...")
+    print("Compute: Dopamine drip")
     mL=float(input("D5W vol (mL): "))
     mg=float(input("Dopamine (mg): "))
     concentration=(mg/mL)*1000
@@ -182,7 +185,7 @@ def dopamine():
     print("Start dopamine drip:", mg, "mg dopamine +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m)")
 
 def dobutamine():
-    print("calculates Dobutamine drip...")
+    print("Compute: Dobutamine drip")
     mL=float(input("D5W vol (mL): "))
     mg=float(input("Dobutamine (mg): "))
     concentration=(mg/mL)*1000
@@ -193,7 +196,7 @@ def dobutamine():
     print("Start dobutamine drip:", mg, "mg dobutamine +", mL, "cc D5W x", drip_rate, "cc/hr", "(dose:", desired_dose, "mcg/kg/m)")
 
 def na_correction():
-    print("calculates Na+ deficit...")
+    print("Compute: Na+ deficit")
     na_current=float(input("Serum Na: "))
     na_desired=float(input("Desired Na: "))
     wt=float(input("Wt. (kg): "))
@@ -206,12 +209,13 @@ def na_correction():
     drip_rate=(pnss_needed*1000)/infusion_time
     print("Drip rate =", round(drip_rate), "cc/h")
     print("\n IVF: PNSS 1L x", round(drip_rate), "cc/h for a total of", round(pnss_needed, 1), "L, re-check serum Na (e.g. q6h).")
-    see=input("See note? [y/n] ").lower()
+    see=input("See note? [y/n]: ").lower()
     if see == "y":
         print("Note: frequent Na+ monitoring needed (correction is unpredictable). Na+ should not be corrected >10nM within the first 24h in chronic hyponatremia due to increased risk of osmotic demyelination syndrome (central pontine myelinolysis).")
 
+
 def water_deficit():
-    print("calculates water deficit in hypernatremia...")
+    print("Compute: water deficit in hypernatremia")
     gender=input("Gender: [M/F] ").lower()
     na=float(input("Serum Na: "))
     wt=float(input("Wt. (kg): "))
@@ -231,17 +235,18 @@ def water_deficit():
     print("Option 1: Give", round(po_rate), "ml free-water flushes q4h in between feedings.")
     print("Option 2: IVF D5W (or 0.3 NaCl) 1 L x", round(iv_rate), "cc/h")
     print("Re-check serum Na (e.g. q6h).")
-    see=input("See note? [y/n] ").lower()
+    see=input("See note? [y/n]: ").lower()
     if see == "y":
         print("Note: free water should be administered PO/NGT unless contraindicated (D5W alternative or 0.3 NaCl). Correct water deficit over 48-72 h with daily incorporation of insensible losses and ongoing water losses.")
         print("Normal intake: 2500 ml/d (35 mg/kg/d in afebrile 70 kg) Liquids: 1500 ml. Foods: 700 ml. Metabolic (endogenous): 300 ml.")
         print("Normal output: 1400-2300 ml/d. Insensible loss: 600-900 ml (lungs (decreased during MV due to free water gain during humidified ventilation) and skin) + 2.5 ml/kg/d each degree > normal. Urine: 800-1500 ml. Stool: 250 ml.")
 
+
 def fio2():
-    print("calculates Desired FiO2...")
+    print("Compute: Desired FiO2")
     age=float(input("Age: "))
-    current_FiO2=float(input("Current FiO2: "))
-    current_PaO2=float(input("Current PaO2: "))
+    current_FiO2=float(input("Current FiO2 (%): "))
+    current_PaO2=float(input("Current PaO2 (mmHg): "))
 
     if age <60:
         desired_PaO2=104-(0.43*age)
@@ -249,7 +254,7 @@ def fio2():
         desired_PaO2=80-(age-60)
     
     desired_FiO2=(current_FiO2*desired_PaO2)/current_PaO2
-    print("Desired FiO2 =", round(desired_FiO2))
+    print("Desired FiO2 =", round(desired_FiO2), "%")
     if desired_FiO2 >=60:
         print("Suggest: Face mask 7-8 LPM (FiO2 = 60%) or higher O2 flow system.")
     elif desired_FiO2 >=50 <60:
@@ -267,15 +272,19 @@ def fio2():
     else:
         print("FiO2 at room air is 21%.")
 
-    see=input("See note? [y/n] ")
-    print("O2 flow system, O2 flow rate, Estimated FiO2:")
-    print("Nasal cannula    1       24 %")
-    print("Nasal cannula    2       28 %")
-    print("Nasal cannula    3       32 %")
-    print("Nasal cannula    4       36 %")
-    print("Nasal cannula    5       40 %")
-    print("Nasal cannula    6       44 %")
-    print("Simple face mask 5-6     40 %")
-    print("Simple face mask 6-7     50 %")
-    print("Simple face mask 7-8     60 %")
+    see=input("See note? [y/n]: ")
+    if see == "y":
+        print("O2 flow system, O2 flow rate, Estimated FiO2:")
+        print("Nasal cannula    1       24 %")
+        print("Nasal cannula    2       28 %")
+        print("Nasal cannula    3       32 %")
+        print("Nasal cannula    4       36 %")
+        print("Nasal cannula    5       40 %")
+        print("Nasal cannula    6       44 %")
+        print("Simple face mask 5-6     40 %")
+        print("Simple face mask 6-7     50 %")
+        print("Simple face mask 7-8     60 %")
+
+
+
 
