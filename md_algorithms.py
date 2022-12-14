@@ -4,6 +4,43 @@
 #pip install tabulate
 from tabulate import tabulate
 
+def effusion():
+    print("Diagnostic Algorithm of Pleural Effusion")
+    print("Pleural effusion \n-> Perform diagnostic thoracentesis. \n-> Measure pleural fluid protein and LDH.")
+    exudative=[["Any of following met?"], ["PF/serum protein >0.5 \nPF/serum LDH >0.6 \nPF LDH >2/3 upper normal serum limit"]]
+    print(tabulate(exudative, headers="firstrow", tablefmt="fancy_grid"))
+    any_met=input("Answer? [y/n]: ")
+    if any_met == "n":
+        print("Transudate: Treat CHF, cirrhosis, nephrosis")
+    elif any_met == "y":
+        print("Exudate: Further diagnostic procedures")
+        measure=[["Measure PF glucose \nObtain PF cytology \nObtain differential cell count \nCulture, stain PF \nPF marker for TB"]]
+        print(tabulate(measure, tablefmt="fancy_grid"))
+        glucose=[["Glucose < 60 mg/dL"], ["Consider: \n Malignacy \n Bacterial infection \n Rheumatoid pleuritis"]]
+        print(tabulate(glucose, headers="firstrow", tablefmt="fancy_grid"))
+        print("If no diagnosis: ")
+        options=[["Consider PE (spiral CT or lung scan)", "[Y] Treat for PE. [N] >>"],
+                ["PF marker for TB", "[Y] Treat for TB. [N] >>"],
+                ["Symptoms improving", "[Y] Observe. [N] >>"],
+                ["Consider thoracoscopy or \nimage-guided pleural biopsy"]]
+        print(tabulate(options, headers="firstrow", tablefmt="fancy_grid"))
+
+def ascites():
+    print("Algorithm for the diagnosis of ascites according to the serum albumin gradient (SAAG)")
+    saag=float(input("SAAG g/dL: "))
+    if saag >= 1.1:
+        ascitic_protein=float(input("Ascitic protein g/dL: "))
+        if ascitic_protein >=2.5:
+            protein_greater=[["Ascitic protein >=2.5 g/dL \n Heart failure/constrictive pericarditis\n Early Budd-Chiari syndrome\n IVC obstruction\n Sinusoidal obstruction syndrome"]]
+            print(tabulate(protein_greater, tablefmt="fancy_grid"))
+        elif ascitic_protein <2.5:
+            protein_lesser=[["Ascitic protein < 2.5 g/dL \n Cirrhosis \n Late Budd=Chiari syndrome \n Massive liver metastasis"]]
+            print(tabulate(protein_lesser, tablefmt="fancy_grid"))
+    elif saag <1.1:
+        saag_lesser=[["SAAG <1.1 g/dL \n Biliary leak \n Nephrotic syndrome \n Pancreatitis \n Peritoneal carcinomatosis \n Tuberculosis"]]
+        print(tabulate(saag_lesser, tablefmt="fancy_grid"))
+
+
 def prenatal():
     print("Prenatal checkup reminders")
     answer=input("Checkup status (first, second, 20, 24, 28, 33, 37, 38, 39, 40, or 41): ").lower()

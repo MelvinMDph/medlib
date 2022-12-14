@@ -12,6 +12,8 @@ def main():
 
     if tag == "list":
         list()
+    elif tag == "ascites":
+        ascites()
     elif tag == "axis":
         qrs_axis()
     elif tag == "bmi":
@@ -20,6 +22,8 @@ def main():
         dobutamine()
     elif tag == "dopa":
         dopamine()
+    elif tag == "effusion":
+        effusion()
     elif tag == "fio2":
         fio2()
     elif tag == "gfr":
