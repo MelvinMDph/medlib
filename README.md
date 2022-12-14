@@ -1,8 +1,6 @@
 # medlibrary
 ## Formulas in Medicine  
   
-tag        :        "formula"  
-  
 - axis        :    QRS axis  
 - bmi        :    BMI (Asian population)  
 - dobu        :    Dobutamine drip  
@@ -20,7 +18,6 @@ tag        :        "formula"
   
 ## Algorithms in Medicine
   
-- list  : "algorithm"  
 - ascites : Algorithm for the diagnosis of ascites according to SAAG
 - effusion : Diagnostic Algorithm of Pleural Effusion
 - ihd   : Management of Ischemic Heart Disease  
