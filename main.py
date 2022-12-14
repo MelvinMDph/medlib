@@ -5,6 +5,7 @@ if __name__=="__main__":
     print("Welcome to the app!")
 
 from md_formulas import *
+from md_algorithms import *
 
 def main():
     tag=input("Tag: ").lower()
@@ -23,16 +24,26 @@ def main():
         fio2()
     elif tag == "gfr":
         gfr_calculator()
+    elif tag == "hemorrhoid":
+        hemorrhoid()
+    elif tag == "ihd":
+        ihd_management()
     elif tag == "k":
         k_correction()
     elif tag == "map":
         map_calculator()
+    elif tag == "murmur":
+        murmur()
     elif tag == "na":
         na_correction()
     elif tag == "ne":
         norepinephrine()
     elif tag == "note":
         note()
+    elif tag == "nyha":
+        nyha()
+    elif tag == "prenatal":
+        prenatal()
     elif tag == "qtc":
         corrected_qt()
     elif tag == "water":
