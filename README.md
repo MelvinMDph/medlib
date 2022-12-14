@@ -21,6 +21,8 @@ tag        :        "formula"
 ## Algorithms in Medicine
   
 - list  : "algorithm"  
+- ascites : Algorithm for the diagnosis of ascites according to SAAG
+- effusion : Diagnostic Algorithm of Pleural Effusion
 - ihd   : Management of Ischemic Heart Disease  
 - murmur  : Evaluation of Heart Murmur
 - nyha  : New York Heart Association Functional Classification  
