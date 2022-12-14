@@ -40,7 +40,6 @@ def ascites():
         saag_lesser=[["SAAG <1.1 g/dL \n Biliary leak \n Nephrotic syndrome \n Pancreatitis \n Peritoneal carcinomatosis \n Tuberculosis"]]
         print(tabulate(saag_lesser, tablefmt="fancy_grid"))
 
-
 def prenatal():
     print("Prenatal checkup reminders")
     answer=input("Checkup status (first, second, 20, 24, 28, 33, 37, 38, 39, 40, or 41): ").lower()
