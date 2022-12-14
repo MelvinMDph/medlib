@@ -1,10 +1,8 @@
 # medlibrary
 ## Formulas in Medicine  
   
-tag        :        "function"  
+tag        :        "formula"  
   
-- list        :    list tags  
-- note        :    enter note    
 - axis        :    QRS axis  
 - bmi        :    BMI (Asian population)  
 - dobu        :    Dobutamine drip  
@@ -17,5 +15,14 @@ tag        :        "function"
 - na        :    Na+ deficit in hyponatremia  
 - ne        :    Norepinephrine drip  
 - water        :    water deficit in hypernatremia  
+- list        :    list tags  
+- note        :    enter note  
+  
+## Algorithms in Medicine
+  
+- list  : "algorithm"  
+- ihd   : Management of Ischemic Heart Disease  
+- murmur  : Evaluation of Heart Murmur
+- nyha  : New York Heart Association Functional Classification  
   
 > adding more code...
